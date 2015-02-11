@@ -14,7 +14,11 @@
 				} )
 				.delegate( this.selector, opts.trigger == 'hover' ? 'mouseleave.tipsy' : 'blur.tipsy', function () {
 					$.tipsy.get( this, opts ).hide();
-				} );
+				} )
+                // RichS: Modified this to handle removal of tips when clicking on the item
+                .delegate( this.selector, 'mousedown', function () {
+                    $.tipsy.get( this, opts ).hide();
+                } );
 			return this;
 		}
 		return this.each( function () {
